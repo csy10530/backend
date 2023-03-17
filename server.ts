@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 app.use(cors({
     credentials: true,
-    origin: [frontend]
+    origin: [frontend, "http://ec2-34-232-65-71.compute-1.amazonaws.com:3000/"]
 }));
 
 mongoose.connect(connectDB);
