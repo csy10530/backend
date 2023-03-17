@@ -5,7 +5,9 @@
 /.pnp
 .pnp.js
 backend.pem
+key.pem
 csr.pem
+server.crt
 
 # testing
 /coverage
