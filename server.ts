@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 
 app.use(cors({
     credentials: true,
-    origin: "https://siyuan.d142bosvtdejd3.amplifyapp.com/"
+    origin: ["https://siyuan.d142bosvtdejd3.amplifyapp.com", frontend]
 }));
 
 mongoose.connect(connectDB);
