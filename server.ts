@@ -6,14 +6,21 @@ import bodyParser from "body-parser";
 import UserController from "./controllers/users/UserController";
 import AuthenticationController from "./controllers/Authentication/AuthenticationController";
 import ProductController from "./controllers/products/ProductController";
+import * as fs from "fs";
+
+const https = require("https")
 
 const connectDB = "mongodb+srv://usc_steven_chen:200810530@backend.iigppdj.mongodb.net/?retryWrites=true&w=majority";
 const frontend = "http://localhost:3000";
 
+const key = fs.readFileSync("key.pem")
+const cert = fs.readFileSync("server.crt")
+const credentials = {key: key, cert: cert}
+
 const cors = require("cors");
 
 const app = express();
-const httpServer = createServer(app);
+const httpsServer = https.createServer(credentials, app);
 app.use(bodyParser.json());
 
 app.use(cors({
@@ -31,4 +38,4 @@ const productController = ProductController.getInstance(app);
 AuthenticationController(app);
 
 const PORT = 4000;
-httpServer.listen(process.env.PORT || PORT);
+httpsServer.listen(process.env.PORT || PORT);
